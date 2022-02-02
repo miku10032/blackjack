@@ -3,17 +3,19 @@
     width: 720px;
     border: solid 1px #ddd;
     margin: 0 auto;
-   background: #3ac7fe;
-border: solid 10px;
-text-align:center;
-min-height:430px;
+	background: #3ac7fe;
+	border: solid 10px;
+	text-align:center;
+	min-height:430px;
 }
 
 .btn{
     border:none;
     padding: 10px 30px;
-    border-radius:10px;
+    border-radius:0px;
     cursor:pointer;
+	background:#222;
+    color:white !important;
 }
 
 .btn:hover{
@@ -31,19 +33,14 @@ color:white;
     width: 100px;
     height: 160px;
     padding: 10px;
-    border: solid 1px #808080;
     background-color: white;
     display: inline-block;
     border-radius: 10px;
-    font-size: 10pt;
-    text-align: center;
     margin: 3px;
     border:solid 3px;
 }
 
-.btn
-{
-    background:#222;
-    color:white !important;
-    border-radius:0px;
+.game .textarea{
+	font-size: 20px;
+	font-weight: bold;
 }
