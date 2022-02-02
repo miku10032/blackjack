@@ -13,9 +13,10 @@ standButton.style.display = 'none';
 
 let gameStart = false,
   gameOver = false,
-  playWon = false,
-  playTie = false,
-  playBust = false,
+  playerWon = false,
+  playerTie = false,
+  playerBust = false,
+  dealerBust = false,
   blackjack = false,
   fivecard = false,
   dealerCards = [],
@@ -28,6 +29,11 @@ newGameButton.addEventListener('click', function() {
   gameStarted = true;
   gameOver = false;
   playerWon = false;
+  playerTie = false;
+  playerBust = false;
+  dealerBust = false;
+  blackjack = false;
+  fivecard = false;
 
   deck = createDeck();
   shuffleDeck(deck);
@@ -86,20 +92,55 @@ standButton.addEventListener('click', function(){
 function checkForEndOfGame(){
   updateScores();
   
-  if(gameOver){
-    while(dealerScore<=playerScore && playerScore <=21 && dealerScore <=21){
+  if(dealerScore==21 && dealerCards.length == 2)
+  {
+	  blackjack = true;
+	  playerWon = false;
+      gameOver = true;
+  }
+  if(playerScore==21 && playerCards.length == 2)
+  {
+	  blackjack = true;
+	  playerWon = true;
+      gameOver = true;
+  }
+  
+  if(dealerCards.length == 5)
+  {
+	  fivecard = true;
+	  if (dealerScore<=21){
+	  playerWon = false;
+	  }
+	  playerWon = true;
+      gameOver = true;
+  }
+  if(playerCards.length == 5)
+  {
+	  fivecard = true;
+	  if (playerScore<=21){
+	  playerWon = true;
+	  }
+	  else playerWon = false;
+      gameOver = true;
+  }
+  
+  if(gameOver && blackjack==false && fivecard == false){
+    while(dealerScore<playerScore && playerScore <=21 && dealerScore <=21){
             dealerCards.push(getNextCard());
             updateScores();
     }
   }
-    
+  
+  
     if(playerScore>21){
       playerWon=false;
+	  playerBust=true;
       gameOver = true;
     }
     
     else if(dealerScore>21){
       playerWon = true;
+	  dealerBust = true;
       gameOver = true;
     }
     
@@ -107,6 +148,9 @@ function checkForEndOfGame(){
       if(playerScore>dealerScore){
         playerWon = true;
       }
+	  else if(playerScore==dealerScore){
+		playerTie = true;
+	  }
       else{
         playerWon = false;
       }
@@ -154,9 +198,31 @@ function showStatus()
 	textArea.innerText = '';
     if(playerWon)
     {
+	  if(blackjack){
+		  textArea.innerText += "You get a BLACKJACK.";
+	  }
+	  if(dealerBust){
+		  textArea.innerText += "Dealer BUSTED.";
+	  }
+	  if(fivecard && playerCards.length==5){
+		  textArea.innerText += "You get FIVECARDS without busting.";
+	  }
       textArea.innerText += "YOU WIN!";
     }
+	else if(playerTie)
+	{
+	  textArea.innerText += "Both of you have same points.It is a TIE."
+	}
     else{
+	  if(blackjack){
+		  textArea.innerText += "Dealer get a BLACKJACK.";
+	  }
+	  if(playerBust){
+		  textArea.innerText += "You BUSTED.";
+	  }
+	  if(fivecard && dealerCards.length==5){
+		  textArea.innerText += "Dealer get FIVECARDS without busting.";
+	  }
       textArea.innerText += "DEALER WINS.";
     }
     newGameButton.style.display = 'inline';
