@@ -188,7 +188,6 @@ function getScore(cardArray){
 		}
 	  }
     }
-	
 	return score; 
   }
    
