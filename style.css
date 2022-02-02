@@ -27,18 +27,9 @@ background:black;
 color:white;
 }
 
-.game .game-body
-{
-padding: 20px;
-}
-
-.game .game-options
-{
-text-align:center;
-}
 .game .card{
-    width: 50px;
-    height: 80px;
+    width: 100px;
+    height: 160px;
     padding: 10px;
     border: solid 1px #808080;
     background-color: white;
@@ -48,57 +39,6 @@ text-align:center;
     text-align: center;
     margin: 3px;
     border:solid 3px;
-}
-
-.game .status
-{
-    display: inline-block;
-background: gold;
-border: solid 5px white;
-border-radius: 10px;
-padding: 5px 20px;
-margin: 0 auto;
-margin-top: 10px;
-display:none;
-}
-
-
-.players{
-       width: 500px;
-margin: 0 auto;
-margin-top: 20px;
-text-align: center;
-}
-
-.player{
-    width: 40%;
-    border: solid 5px #f5f5f5;
-    border-radius: 10px;
-    padding: 10px;
-    display: inline-block;
-    margin:1%;
-    vertical-align: top;
-    background:#f5f5f5;
-}
-
-.player.active{
-    border: solid 5px #222;
-}
-
-.points{
-    text-align: center;
-    font-size: 20pt;
-    font-weight: bold;
-    margin: 10px;
-}
-
-.deck{
-    float:left;
-    background: white;
-    color:#222;
-    padding: 10px;
-    border-radius:10px;
-    border: double 5px;
 }
 
 .btn

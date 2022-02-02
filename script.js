@@ -1,6 +1,5 @@
 let suits = ['heart', 'club', 'diamond', 'spade'];
 let values = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'];
-
 let textArea = document.getElementById('text-area');
 let newGameButton = document.getElementById('new-game-button');
 let hitButton = document.getElementById('hit-button');
@@ -15,6 +14,10 @@ standButton.style.display = 'none';
 let gameStart = false,
   gameOver = false,
   playWon = false,
+  playTie = false,
+  playBust = false,
+  blackjack = false,
+  fivecard = false,
   dealerCards = [],
   playerCards = [],
   dealerScore = 0,
@@ -40,6 +43,7 @@ newGameButton.addEventListener('click', function() {
   newGameButton.style.display = 'none';
   hitButton.style.display = 'inline';
   standButton.style.display = 'inline';
+  checkForEndOfGame();
   showStatus();
 })
 
@@ -83,9 +87,7 @@ function checkForEndOfGame(){
   updateScores();
   
   if(gameOver){
-    while(dealerScore<playerScore &&
-          playerScore <=21 &&
-          dealerScore <=21){
+    while(dealerScore<=playerScore && playerScore <=21 && dealerScore <=21){
             dealerCards.push(getNextCard());
             updateScores();
     }
@@ -129,36 +131,33 @@ function showStatus()
     return; 
   }
   
-  let dealerCardString = '';
   for(let i=0; i<dealerCards.length; i++)
   {
-    dealerCardString += getCardString(dealerCards[i]) + '\n';
 	dealercardimage[i].setAttribute( "src", getCardImage(dealerCards[i]));
   }
-  let playerCardString='';
+  
   for(let i=0; i<playerCards.length; i++)
   {
-    playerCardString += getCardString(playerCards[i]) + '\n';
 	playercardimage[i].setAttribute( "src", getCardImage(playerCards[i]));
+  }
+  
+  if (gameOver == false)
+  {
+	dealercardimage[0].setAttribute( "src", "poker/cover.png");
   }
   
   updateScores();
   
-  textArea.innerText = 'Dealer has:\n' +
-                        dealerCardString + 
-                        '(score: ' + dealerScore + ')\n\n' +
-                        
-                        'Player has:\n' +
-                        playerCardString + 
-                        '(score: ' + playerScore + ')\n\n';
-                        
+  textArea.innerText =  'You have ' + playerScore + '. Hit or Stand?';
+
   if(gameOver){
+	textArea.innerText = '';
     if(playerWon)
     {
       textArea.innerText += "YOU WIN!";
     }
     else{
-      textArea.innerText += "DEALER WINS";
+      textArea.innerText += "DEALER WINS.";
     }
     newGameButton.style.display = 'inline';
     hitButton.style.display = 'none';
