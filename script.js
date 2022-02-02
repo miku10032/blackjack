@@ -222,13 +222,13 @@ function showStatus()
 	  if(blackjack){
 		  textArea.innerText += "Dealer get a BLACKJACK. ";
 	  }
-	  else if(playerBust){
+	  if(playerBust){
 		  textArea.innerText += "You BUSTED. ";
 	  }
-	  else if(fivecard && dealerCards.length==5){
+	  if(fivecard && dealerCards.length==5){
 		  textArea.innerText += "Dealer get FIVECARDS without busting. ";
 	  }
-	  else{
+	  if(playerScore<=21 && dealerScore<=21 && blackjack == false && fivecard == false){
 		  textArea.innerText += "You have " + playerScore + " and dealer has " + dealerScore + ". ";
 	  }
       textArea.innerText += "DEALER WINS.";
