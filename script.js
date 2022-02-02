@@ -19,8 +19,8 @@ let gameStart = false,
   dealerBust = false,
   blackjack = false,
   fivecard = false,
-  dealerCards = [],
-  playerCards = [],
+  dealerCards = new Array(5),
+  playerCards = new Array(5),
   dealerScore = 0,
   playerScore = 0,
   deck = [];
@@ -105,15 +105,7 @@ function checkForEndOfGame(){
       gameOver = true;
   }
   
-  if(dealerCards.length == 5)
-  {
-	  fivecard = true;
-	  if (dealerScore<=21){
-	  playerWon = false;
-	  }
-	  playerWon = true;
-      gameOver = true;
-  }
+  
   if(playerCards.length == 5)
   {
 	  fivecard = true;
@@ -124,11 +116,21 @@ function checkForEndOfGame(){
       gameOver = true;
   }
   
-  if(gameOver && blackjack==false && fivecard == false){
+  if(gameOver && blackjack==false && fivecard == false && dealerCards.length < 5){
     while(dealerScore<playerScore && playerScore <=21 && dealerScore <=21){
             dealerCards.push(getNextCard());
             updateScores();
     }
+  }
+  
+  if(dealerCards.length == 5)
+  {
+	  fivecard = true;
+	  if (dealerScore<=21){
+	  playerWon = false;
+	  }
+	  else playerWon = true;
+      gameOver = true;
   }
   
   
@@ -150,6 +152,9 @@ function checkForEndOfGame(){
       }
 	  else if(playerScore==dealerScore){
 		playerTie = true;
+		if(fivecard){
+			playerTie = false;
+		}
 	  }
       else{
         playerWon = false;
@@ -199,13 +204,13 @@ function showStatus()
     if(playerWon)
     {
 	  if(blackjack){
-		  textArea.innerText += "You get a BLACKJACK.";
+		  textArea.innerText += "You get a BLACKJACK. ";
 	  }
 	  if(dealerBust){
-		  textArea.innerText += "Dealer BUSTED.";
+		  textArea.innerText += "Dealer BUSTED. ";
 	  }
 	  if(fivecard && playerCards.length==5){
-		  textArea.innerText += "You get FIVECARDS without busting.";
+		  textArea.innerText += "You get FIVECARDS without busting. ";
 	  }
       textArea.innerText += "YOU WIN!";
     }
@@ -215,13 +220,13 @@ function showStatus()
 	}
     else{
 	  if(blackjack){
-		  textArea.innerText += "Dealer get a BLACKJACK.";
+		  textArea.innerText += "Dealer get a BLACKJACK. ";
 	  }
 	  if(playerBust){
-		  textArea.innerText += "You BUSTED.";
+		  textArea.innerText += "You BUSTED. ";
 	  }
 	  if(fivecard && dealerCards.length==5){
-		  textArea.innerText += "Dealer get FIVECARDS without busting.";
+		  textArea.innerText += "Dealer get FIVECARDS without busting. ";
 	  }
       textArea.innerText += "DEALER WINS.";
     }
