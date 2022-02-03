@@ -30,7 +30,9 @@ color:white;
 }
 
 .game .card{
-    height: 120px;
+	max-height: 15%;  
+    max-width: 15%;
+    height: auto;
     width: auto;
     padding: 10px;
     background-color: white;
