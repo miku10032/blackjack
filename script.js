@@ -122,7 +122,7 @@ function checkForEndOfGame(){
   }
   
   if(gameOver && blackjack==false && fivecard == false && dealerCards.length < 5){
-    while(dealerScore<playerScore && playerScore <=21 && dealerScore <=21){
+    while(dealerScore<playerScore && playerScore <=21 && dealerScore <=21 && dealerCards.length < 5){
             dealerCards.push(getNextCard());
             updateScores();
     }
@@ -200,7 +200,7 @@ function showStatus()
 	dealercardimage[0].setAttribute( "src", "poker/cover.png");
   }
   
-  updateScores();
+  checkForEndOfGame();
   
   textArea.innerText =  'You have ' + playerScore + '. Hit or Stand?';
 
