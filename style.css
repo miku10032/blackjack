@@ -60,3 +60,10 @@ color:white;
 	position: relative;
     top: -1ex;
 }
+
+.card{
+	max-height: 5%;  
+    max-width: 5%;
+    height: auto;
+    width: auto;
+}
