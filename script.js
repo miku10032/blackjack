@@ -214,10 +214,12 @@ function showStatus()
 	  }
       textArea.innerText += "YOU WIN!";
     }
+	
 	else if(playerTie)
 	{
 	  textArea.innerText += "Both of you have same points.It is a TIE."
 	}
+	
     else{
 	  if(blackjack){
 		  textArea.innerText += "Dealer get a BLACKJACK. ";
