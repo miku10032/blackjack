@@ -147,7 +147,7 @@ function checkForEndOfGame(){
     }
     
     else if(gameOver){
-      if(playerScore>dealerScore){
+      if(playerScore>dealerScore && dealerCards.length != 5){
         playerWon = true;
       }
 	  else if(playerScore==dealerScore){
