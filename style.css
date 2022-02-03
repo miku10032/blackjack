@@ -28,6 +28,12 @@ padding: 10px;
 background:black;
 color:white;
 }
+ 
+.game a
+{
+	text-decoration:none;
+	color:white;
+}
 
 .game .card{
 	max-height: 15%;  
