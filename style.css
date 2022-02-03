@@ -30,8 +30,8 @@ color:white;
 }
 
 .game .card{
-    width: 50%;
-    height: 50%;
+    width: 100px;
+    height: auto;
     padding: 10px;
     background-color: white;
     display: inline-block;
