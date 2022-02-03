@@ -5,6 +5,9 @@ let newGameButton = document.getElementById('new-game-button');
 let hitButton = document.getElementById('hit-button');
 let standButton = document.getElementById('stand-button');
 
+let textArea2 = document.getElementById('text-area2');
+let resetButton = document.getElementById('reset-button');
+
 var dealercardimage = new Array(5);
 var playercardimage = new Array(5);
 
@@ -23,6 +26,8 @@ let gameStart = false,
   playerCards = new Array(5),
   dealerScore = 0,
   playerScore = 0,
+  winsCount,
+  losesCount,
   deck = [];
 
 newGameButton.addEventListener('click', function() {
@@ -213,6 +218,8 @@ function showStatus()
 		  textArea.innerText += "You get FIVECARDS without busting. ";
 	  }
       textArea.innerText += "YOU WIN!";
+	  localStorage.winsCount = Number(localStorage.winsCount)+1;
+	  updateWL();
     }
 	
 	else if(playerTie)
@@ -234,6 +241,8 @@ function showStatus()
 		  textArea.innerText += "You have " + playerScore + " and dealer has " + dealerScore + ". ";
 	  }
       textArea.innerText += "DEALER WINS.";
+	  localStorage.losesCount = Number(localStorage.losesCount)+1;
+	  updateWL();
     }
     newGameButton.style.display = 'inline';
     hitButton.style.display = 'none';
@@ -277,3 +286,27 @@ function updateScores(){
 function getNextCard() {
   return deck.shift();
 }
+
+function resetWL(){
+	localStorage.setItem("winsCount", "0");
+	localStorage.setItem("losesCount", "0");
+	textArea2.innerText = 'Wins:' + localStorage.getItem("winsCount") + ' Loses:' + localStorage.getItem("losesCount");
+}
+
+function updateWL(){
+	textArea2.innerText = 'Wins:' + localStorage.getItem("winsCount") + ' Loses:' + localStorage.getItem("losesCount");
+}
+
+function start()
+{
+	if ( !window.sessionStorage.getItem( "herePreviously" ) )
+   {
+      sessionStorage.setItem( "herePreviously", "true" );
+	  localStorage.setItem("winsCount", "0");
+	  localStorage.setItem("losesCount", "0");
+   }
+   resetButton.addEventListener( "click", resetWL, false );
+   textArea2.innerText = 'Wins:' + localStorage.getItem("winsCount") + ' Loses:' + localStorage.getItem("losesCount");
+}
+
+window.addEventListener( "load", start, false );

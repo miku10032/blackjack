@@ -46,3 +46,11 @@ color:white;
 	font-size: 20px;
 	font-weight: bold;
 }
+
+.game .textarea2{
+	font-size: 20px;
+	font-weight: bold;
+	float: left;
+	position: relative;
+    top: -1ex;
+}
