@@ -167,6 +167,9 @@ function checkForEndOfGame(){
 			playerTie = false;
 		}
 	  }
+	  else if(playerScore<=21 && playerCards.length == 5){
+		  playerWon = true;
+	  }
       else{
         playerWon = false;
       }
