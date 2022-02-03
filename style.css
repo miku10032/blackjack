@@ -31,7 +31,7 @@ color:white;
 
 .game .card{
     width: 50%;
-    height: auto;
+    height: 50%;
     padding: 10px;
     background-color: white;
     display: inline-block;
