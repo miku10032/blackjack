@@ -109,7 +109,13 @@ function checkForEndOfGame(){
 	  playerWon = true;
       gameOver = true;
   }
-  
+  if(dealerScore==21 && dealerCards.length == 2 && playerScore==21 && playerCards.length == 2)
+  {
+	  blackjack = false;
+	  playerWon = false;
+	  playerTie = true;
+      gameOver = true;
+  }
   
   if(playerCards.length == 5)
   {
