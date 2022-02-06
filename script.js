@@ -202,9 +202,6 @@ function getCardImage(card)
 	return "poker/" + card.suit + "_" + card.value + ".png";
 }
 
-
-
-
 function showStatus()
 {
   if( !gameStarted )
