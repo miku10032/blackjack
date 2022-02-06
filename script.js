@@ -55,7 +55,7 @@ newGameButton.addEventListener( 'click', function(){
 	hitButton.style.display = 'inline';
 	standButton.style.display = 'inline';
 	checkForEndOfGame();	//判斷遊戲是否結束
-	showStatus();			//顯示牌面和結果文字
+	showStatus();			//顯示牌面和結果文字狀態
 })
 
 hitButton.addEventListener( 'click', function(){
@@ -70,7 +70,7 @@ standButton.addEventListener( 'click', function(){
 	showStatus();
 });
 
-function createDeck()
+function createDeck()	//構築卡牌，由4個花色和1～13的數字陣列組成52張牌
 {
 	let deck = []
 	for ( let suitIdx = 0; suitIdx < suits.length; suitIdx++ ) 
@@ -84,7 +84,7 @@ function createDeck()
   return deck;
 }
 
-function shuffleDeck(deck)
+function shuffleDeck(deck)	//洗牌
 {
 	for( let i=0; i<deck.length; i++ )
 	{
@@ -95,7 +95,7 @@ function shuffleDeck(deck)
 	}
 }
 
-function checkForEndOfGame()
+function checkForEndOfGame()	//判斷遊戲結束條件
 {
 	updateScores();
   
@@ -197,12 +197,12 @@ function getCardString(card)
 	return card.value + " of " + card.suit;
 }
 
-function getCardImage(card) 
+function getCardImage(card)		//抓取圖片檔案
 {
 	return "poker/" + card.suit + "_" + card.value + ".png";
 }
 
-function showStatus()
+function showStatus()	//顯示牌面和結果文字狀態
 {
   if( !gameStarted )
 	{
@@ -281,7 +281,7 @@ function showStatus()
 	}
 }
 
-function getScore( cardArray )
+function getScore( cardArray )	//點數計算
 {
 	var score = 0;
 	var acecounter = 0;
@@ -289,19 +289,19 @@ function getScore( cardArray )
 	for( var i = 0; i < cardArray.length; i++ )
 	{
 		var card = cardArray[i];
-		score += Math.min( 10, card.value );
+		score += Math.min( 10, card.value );	//J,Q,K都是以數字11～13表示，將11～13調整成10點
 		if(card.value == '1')
 		{
 			hasAce = true;
 		}
-		if( hasAce )
+		if( hasAce )	//用於控制Ace的點數，將1點調整成11點
 		{
 			if ( score + 10 <= 21 )
 			{
 				score += 10;
 				acecounter++;
 			}
-			if ( acecounter > 0 && score > 21 )
+			if ( acecounter > 0 && score > 21 )		//考慮到因為計算為11點會爆牌時調整回1點
 			{
 				score -= 10;
 				acecounter--;
@@ -322,19 +322,19 @@ function getNextCard()
 	return deck.shift();
 }
 
-function resetWL()
+function resetWL()	//重置勝敗記錄
 {
 	localStorage.setItem( "winsCount", "0" );
 	localStorage.setItem( "losesCount", "0" );
 	textArea2.innerText = 'Wins:' + localStorage.getItem( "winsCount" ) + ' Loses:' + localStorage.getItem( "losesCount" );
 }
 
-function updateWL()
+function updateWL()	//更新勝敗記錄
 {
 	textArea2.innerText = 'Wins:' + localStorage.getItem( "winsCount" ) + ' Loses:' + localStorage.getItem( "losesCount" );
 }
 
-function start()
+function start()	//使用LocalStorage記錄勝敗
 {
 	if ( !window.sessionStorage.getItem( "herePreviously" ) )
 	{
