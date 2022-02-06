@@ -40,6 +40,7 @@ newGameButton.addEventListener( 'click', function(){
 	fivecard = false;
 	deck = createDeck();
 	shuffleDeck(deck);
+	//重置參數至初始狀態及做洗牌動作
 	for ( var i = 0; i < 5; ++i )
 	{
 		dealercardimage[i] = document.getElementById( "dealer" + (i + 1) );
@@ -47,13 +48,14 @@ newGameButton.addEventListener( 'click', function(){
 		playercardimage[i].setAttribute( "src", "poker/blank.png");
 		dealercardimage[i].setAttribute( "src", "poker/blank.png");
 	}
+	//把全部牌做清空的表現
 	dealerCards = [ getNextCard(), getNextCard() ];
-	playerCards = [ getNextCard(), getNextCard() ] ;
+	playerCards = [ getNextCard(), getNextCard() ];	//派2張牌給莊家及玩家
 	newGameButton.style.display = 'none';
 	hitButton.style.display = 'inline';
 	standButton.style.display = 'inline';
-	checkForEndOfGame();
-	showStatus();
+	checkForEndOfGame();	//判斷遊戲是否結束
+	showStatus();			//顯示牌面和結果文字
 })
 
 hitButton.addEventListener( 'click', function(){
