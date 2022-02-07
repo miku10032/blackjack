@@ -1,5 +1,5 @@
-let suits = [ 'heart', 'club', 'diamond', 'spade' ];
-let values = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13' ];
+const suits = [ 'heart', 'club', 'diamond', 'spade' ];
+const values = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13' ];
 let textArea = document.getElementById( 'text-area' );
 let textArea2 = document.getElementById( 'text-area2' );
 let newGameButton = document.getElementById( 'new-game-button' );
@@ -7,8 +7,8 @@ let hitButton = document.getElementById( 'hit-button' );
 let standButton = document.getElementById( 'stand-button' );
 let resetButton = document.getElementById( 'reset-button' );
 
-var dealercardimage = new Array(5);
-var playercardimage = new Array(5);
+let dealercardimage = new Array(5);
+let playercardimage = new Array(5);
 
 hitButton.style.display = 'none';
 standButton.style.display = 'none';
